@@ -1,0 +1,14 @@
+pipeline {
+  agent any
+  tools{
+    maven 'maven_3_5_2'
+  }
+}
+
+stages{
+  stage{'Run SAST SCAN'} {
+    steps {
+      sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=demo -Dsonar.host.url=http://localhost:9000 -Dsonar.login=sqp_d6ca88d1c0d549981c2dba5f00141215bbd0a940
+    }
+  }
+}
